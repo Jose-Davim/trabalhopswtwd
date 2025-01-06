@@ -48,7 +48,7 @@ const isAuthenticated = (req, res, next) => {
     if (req.session.user && req.session.user.loggedIn) {
         return next();
     }
-    res.status(401).json({ message: 'Não autorizado' });
+    res.status(401).json({ message: 'Utilizador não autorizado' });
 };
 
 router.get('/protected', isAuthenticated, (req, res) => {
