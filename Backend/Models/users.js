@@ -42,7 +42,7 @@ const UserSchema = new mongoose.Schema({
     },
     entityConnected: {
         type: 'string',
-        ref: "Restaurants"
+        ref: "HairDresser"
     },
     recoverCode: {
         type: 'string'

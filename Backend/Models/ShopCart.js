@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const Reservation = new Schema({
+const ShopCart = new Schema({
     date: {
         type: 'date',
         required: true
@@ -14,6 +14,15 @@ const Reservation = new Schema({
         required: true
     },
     observation: {
+        type: 'string',
+        required: true
+    },
+    hairdresserId:{
+        type: 'string',
+        required: true,
+        ref: 'HairDresser'
+    },
+    reservtion:{
         type: 'string',
         required: true
     },
@@ -31,4 +40,4 @@ const Reservation = new Schema({
 {timestamps: true}
 );
 
-export default mongoose.model('Reservation', Reservation);
+export default mongoose.model('ShopCart', ShopCart);
