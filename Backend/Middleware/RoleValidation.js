@@ -1,4 +1,4 @@
-import Users from "../Models/users";
+import Users from "../Models/Users";
 
 export const CheckRole = (allowedRoles) => {
     return async (req, res, next) => {
