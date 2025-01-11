@@ -6,11 +6,11 @@ const Address = new Schema({
         required: true,
         ref: 'User'
     },
-    city: {
+    firstaddress: {
         type: 'string',
         required: true
     },
-    street: {
+    secondaddress: {
         type: 'string',
         required: true
     },

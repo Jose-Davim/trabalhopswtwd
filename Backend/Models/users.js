@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
-    nome: {
+    name: {
         type: 'string',
         required: [true, "Nome is required!"]
     },
@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema({
         required: [true, "Email is required!"],
         maxlength: 9
     },
-    phone: {
+    phonenumber: {
         type: 'number',
         unique: true,
         required: [true, "Phone is required!"],
