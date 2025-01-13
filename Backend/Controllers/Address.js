@@ -28,25 +28,112 @@ export async function CreateOrUpdateAddress(req, res) {
         });
     }
 
-    if (addressId){
+    if(addressId){
         try {
             const addressData = await Address.findById(addressId, {
                 clientId: true
             });
+            if(addressData.clientId !== req.userId){
+                return res.status(401).json({
+                    "message": "Esta local não pertence a esta conta!",
+                    "code": 0
+                });
+            }
+            await Address.updateOne({
+                _id: addressId
+            }, {
+                firstaddress,
+                secondaddress
+            });
+        }catch(e){
+            return res.status(404).json({
+                "message": "Local não encontrado!",
+                "code": 1
+            });
+        }
+    }else{
+        await Address.create({
+            firstaddress,
+            secondaddress,
+            clientId: req.userId,
+            status: true
+        });
+    }
 
+    res.status(200).json({
+        "message": "Este local foi criado/atualizado com sucesso!",
+        "code": 2
+    });
+}
+
+export async function GetAddress(req, res) {
+    const addressId = req.params.addressId;
+
+    if(!addressId){
+        return res.status(400).json({
+            "message": "ID do local não foi fornecido!"
+        });
+    }
+
+    try {
+        const address = await Address.findById(addressId, {
+            clientId: true,
+            firstaddress: true,
+            secondaddress: true
+        });
     
-    if (addressData.clientId !== req.userId) {
+
+    if(address.clientId !== req.userId){
         return res.status(401).json({
             "message": "Este local não pertence a esta conta!",
             "code": 0
         });
     }
-    await Address.updateOne({
-        _id: addressId
-    }, {
-        firstaddress,
-        secondaddress
-    });
-}
+
+    res.status(200).json(address);
+    }catch(e){
+        return res.status(404).json({
+            "message": "Local não encontrado!",
+            "code": 1
+        });
     }
 }
+
+export async function DeleteAddress(req, res) {
+    const addressId = req.params.addressId;
+
+    if(!addressId){
+        return res.status(400).json({
+            "message": "ID do local não foi fornecido!"
+        });
+    }
+
+    try {
+        const address = await Address.findById(addressId, {
+            clientId: true
+        });
+
+        if(address.clientId !== req.userId){
+            return res.status(401).json({
+                "message": "Este local não pertence a esta conta!",
+                "code": 0
+            });
+        }
+
+        await Address.updateOne({
+            _id: addressId
+        }, {
+            status: false
+        });
+
+        res.status(200).json({
+            "message": "Local removido com sucesso!",
+            "code": 2
+        });
+}catch(e){
+    return res.status(400).json({
+        "message": "Local não encontrado!",
+        "code": 1
+    });
+}
+}    
