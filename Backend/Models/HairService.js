@@ -20,6 +20,10 @@ const HairService = new Schema({
     description: {
         type: 'string',
     },
+    hairdresser: {
+        type: 'string',
+        ref : 'Hairdresser'
+    },
     status: {
         type: 'boolean',
         required: true
