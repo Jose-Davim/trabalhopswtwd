@@ -1,4 +1,4 @@
-import Users from "../Models/Users";
+import Users from "../Models/users";
 import ShopCart from "../Models/ShopCart";
 import Address from "../Models/Address";
 import ShopCartItems from "../Models/ShopCartItems";
@@ -63,7 +63,7 @@ export async function SaveReservation(req, res) {
 
         await ShopCartItems.create({
             shopCartId: shopCart._id,
-            userId,
+            userId ,
             address,
             hairdresserId,
             hairService,
