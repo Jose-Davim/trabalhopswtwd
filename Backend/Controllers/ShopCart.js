@@ -15,7 +15,7 @@ export async function SaveReservation(req, res) {
 
     if (!paymentMethod || !userId || !address || !hairdresserId || !hairService) {
         return res.status(400).json({
-            "message": "All fields are required",
+            "message": "Campos Obrigatórios",
             "code": 0
         });
     }
@@ -23,12 +23,12 @@ export async function SaveReservation(req, res) {
     try {
         const user = await Users.findById(userId);
         if (!user) {
-            return res.status(404).json({ "message": "User not found", "code": 1 });
+            return res.status(404).json({ "message": "Utilizador não encontrado", "code": 1 });
         }
 
         const address = await Address.findById(address);
         if (!address) {
-            return res.status(404).json({ "message": "Address not found", "code": 1 });
+            return res.status(404).json({ "message": "Morada não encontrado", "code": 1 });
         }
 
         const hairdresser = await HairDresser.findById(hairdresserId);
