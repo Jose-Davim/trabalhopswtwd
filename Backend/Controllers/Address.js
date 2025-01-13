@@ -35,7 +35,7 @@ export async function CreateOrUpdateAddress(req, res) {
             });
             if(addressData.clientId !== req.userId){
                 return res.status(401).json({
-                    "message": "Esta local não pertence a esta conta!",
+                    "message": "Esta Morada não pertence a esta conta!",
                     "code": 0
                 });
             }
@@ -47,7 +47,7 @@ export async function CreateOrUpdateAddress(req, res) {
             });
         }catch(e){
             return res.status(404).json({
-                "message": "Local não encontrado!",
+                "message": "Morada não encontrado!",
                 "code": 1
             });
         }
@@ -61,7 +61,7 @@ export async function CreateOrUpdateAddress(req, res) {
     }
 
     res.status(200).json({
-        "message": "Este local foi criado/atualizado com sucesso!",
+        "message": "Esta morada foi criado/atualizado com sucesso!",
         "code": 2
     });
 }
@@ -71,7 +71,7 @@ export async function GetAddress(req, res) {
 
     if(!addressId){
         return res.status(400).json({
-            "message": "ID do local não foi fornecido!"
+            "message": "ID da morada não foi fornecido!"
         });
     }
 
@@ -85,7 +85,7 @@ export async function GetAddress(req, res) {
 
     if(address.clientId !== req.userId){
         return res.status(401).json({
-            "message": "Este local não pertence a esta conta!",
+            "message": "Esta morada não pertence a esta conta!",
             "code": 0
         });
     }
@@ -93,7 +93,7 @@ export async function GetAddress(req, res) {
     res.status(200).json(address);
     }catch(e){
         return res.status(404).json({
-            "message": "Local não encontrado!",
+            "message": "Morada não encontrado!",
             "code": 1
         });
     }
@@ -104,7 +104,7 @@ export async function DeleteAddress(req, res) {
 
     if(!addressId){
         return res.status(400).json({
-            "message": "ID do local não foi fornecido!"
+            "message": "ID da morada não foi fornecido!"
         });
     }
 
@@ -115,7 +115,7 @@ export async function DeleteAddress(req, res) {
 
         if(address.clientId !== req.userId){
             return res.status(401).json({
-                "message": "Este local não pertence a esta conta!",
+                "message": "Esta morada não pertence a esta conta!",
                 "code": 0
             });
         }
@@ -127,12 +127,12 @@ export async function DeleteAddress(req, res) {
         });
 
         res.status(200).json({
-            "message": "Local removido com sucesso!",
+            "message": "Morada removida com sucesso!",
             "code": 2
         });
 }catch(e){
     return res.status(400).json({
-        "message": "Local não encontrado!",
+        "message": "Morada não encontrado!",
         "code": 1
     });
 }
