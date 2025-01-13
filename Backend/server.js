@@ -10,4 +10,3 @@ mongoose.connect('mongodb+srv://scorpsgama:<Pipo4682e>@ucut.h6jc0.mongodb.net/')
 server.use(express.json());
 server.use(routes);
 server.listen(8080);
-a
