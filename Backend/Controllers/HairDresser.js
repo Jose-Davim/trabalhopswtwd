@@ -102,19 +102,21 @@ export async function CreateHairDresser(req, res){
           "message": "Rating inválido, o rating pode ser entre 0 a 5!",
           "code": 1
       });
+  }
 
-      const openstoreList = openstore.split(":");
-      const closestoreList = closestore.split(":");
+  const openstoreList = openstore.split(":");
+  const closestoreList = closestore.split(":");
 
-      const openstoreDate = new Date();
-      openstoreDate.setHours(openstoreList[0]);
-      openstoreDate.setMinutes(openstoreList[1]);
-      openstoreDate.setSeconds(0);
+  const openstoreDate = new Date();
+  openstoreDate.setHours(openstoreList[0]);
+  openstoreDate.setMinutes(openstoreList[1]);
+  openstoreDate.setSeconds(0);
 
-     const closestoreDate = new Date();
-        closestoreDate.setHours(closestoreList[0]);
-        closestoreDate.setMinutes(closestoreList[1]);
-        closestoreDate.setSeconds(0);
+  const closestoreDate = new Date();
+  closestoreDate.setHours(closestoreList[0]);
+  closestoreDate.setMinutes(closestoreList[1]);
+  closestoreDate.setSeconds(0);
+
   if(openstoreDate > closestoreDate){
       return res.status(400).json({
           "message": "Horário de abertura não pode ser maior que o horário de fecho!"
@@ -142,7 +144,7 @@ export async function CreateHairDresser(req, res){
     "message": "Cabeleireiro criado com sucesso!"
   });
 }
-}
+
 
 export async function GetHairDresser(req, res){
     const slug = req.params.slug;
